@@ -17,7 +17,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     window = UIWindow(frame: windowScene.coordinateSpace.bounds)
     window?.windowScene = windowScene
-    window?.rootViewController = ViewController()
+
+    let nc = UINavigationController(rootViewController: TopHeadlinesViewController())
+    nc.navigationBar.prefersLargeTitles = true
+    window?.rootViewController = nc
     window?.makeKeyAndVisible()
   }
 
