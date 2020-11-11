@@ -11,11 +11,12 @@
 		C76F99A125589E8E00027C59 /* Key.plist in Resources */ = {isa = PBXBuildFile; fileRef = C76F99A025589E8E00027C59 /* Key.plist */; };
 		C76F99A42558A02000027C59 /* Key-SAMPLE.plist in Resources */ = {isa = PBXBuildFile; fileRef = C76F99A32558A02000027C59 /* Key-SAMPLE.plist */; };
 		C76F99AB2559922700027C59 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76F99AA2559922700027C59 /* NewsService.swift */; };
-		C76F99AE25599A1B00027C59 /* us.json in Resources */ = {isa = PBXBuildFile; fileRef = C76F99AD25599A1A00027C59 /* us.json */; };
 		C76F99B1255A93B800027C59 /* CachedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76F99B0255A93B800027C59 /* CachedImageView.swift */; };
 		C76F99B4255A940300027C59 /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76F99B3255A940300027C59 /* ArticleCell.swift */; };
 		C76F99BD255C0AFC00027C59 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76F99BC255C0AFC00027C59 /* SearchViewController.swift */; };
 		C76F99C6255C3A8E00027C59 /* ArticleWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76F99C5255C3A8E00027C59 /* ArticleWebView.swift */; };
+		C76F99CC255C74DD00027C59 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76F99CB255C74DD00027C59 /* Article.swift */; };
+		C76F99CF255C74F000027C59 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76F99CE255C74F000027C59 /* ApiResponse.swift */; };
 		C7A983F7255890070012F021 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A983F6255890070012F021 /* AppDelegate.swift */; };
 		C7A983F9255890070012F021 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A983F8255890070012F021 /* SceneDelegate.swift */; };
 		C7A983FB255890070012F021 /* HeadlinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A983FA255890070012F021 /* HeadlinesViewController.swift */; };
@@ -28,11 +29,12 @@
 		C76F99A025589E8E00027C59 /* Key.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Key.plist; sourceTree = "<group>"; };
 		C76F99A32558A02000027C59 /* Key-SAMPLE.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Key-SAMPLE.plist"; sourceTree = "<group>"; };
 		C76F99AA2559922700027C59 /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
-		C76F99AD25599A1A00027C59 /* us.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = us.json; sourceTree = "<group>"; };
 		C76F99B0255A93B800027C59 /* CachedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageView.swift; sourceTree = "<group>"; };
 		C76F99B3255A940300027C59 /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		C76F99BC255C0AFC00027C59 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C76F99C5255C3A8E00027C59 /* ArticleWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleWebView.swift; sourceTree = "<group>"; };
+		C76F99CB255C74DD00027C59 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		C76F99CE255C74F000027C59 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
 		C7A983F3255890070012F021 /* DailyNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7A983F6255890070012F021 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7A983F8255890070012F021 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +55,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C76F99D1255C74FF00027C59 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C76F99CE255C74F000027C59 /* ApiResponse.swift */,
+				C76F99CB255C74DD00027C59 /* Article.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C7A983EA255890070012F021 = {
 			isa = PBXGroup;
 			children = (
@@ -73,10 +84,10 @@
 		C7A983F5255890070012F021 /* DailyNews */ = {
 			isa = PBXGroup;
 			children = (
-				C76F99AD25599A1A00027C59 /* us.json */,
 				C7A983F6255890070012F021 /* AppDelegate.swift */,
 				C7A983F8255890070012F021 /* SceneDelegate.swift */,
 				C76F99AA2559922700027C59 /* NewsService.swift */,
+				C76F99D1255C74FF00027C59 /* Model */,
 				C76F99BC255C0AFC00027C59 /* SearchViewController.swift */,
 				C7A983FA255890070012F021 /* HeadlinesViewController.swift */,
 				C76F99C5255C3A8E00027C59 /* ArticleWebView.swift */,
@@ -149,7 +160,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C76F99A42558A02000027C59 /* Key-SAMPLE.plist in Resources */,
-				C76F99AE25599A1B00027C59 /* us.json in Resources */,
 				C76F99A125589E8E00027C59 /* Key.plist in Resources */,
 				C7A98403255890080012F021 /* LaunchScreen.storyboard in Resources */,
 				C7A98400255890080012F021 /* Assets.xcassets in Resources */,
@@ -166,6 +176,8 @@
 			files = (
 				C7A983FB255890070012F021 /* HeadlinesViewController.swift in Sources */,
 				C76F99BD255C0AFC00027C59 /* SearchViewController.swift in Sources */,
+				C76F99CC255C74DD00027C59 /* Article.swift in Sources */,
+				C76F99CF255C74F000027C59 /* ApiResponse.swift in Sources */,
 				C7A983F7255890070012F021 /* AppDelegate.swift in Sources */,
 				C76F99B1255A93B800027C59 /* CachedImageView.swift in Sources */,
 				C76F99C6255C3A8E00027C59 /* ArticleWebView.swift in Sources */,
@@ -310,6 +322,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VR2MC4FZ27;
 				INFOPLIST_FILE = DailyNews/Info.plist;

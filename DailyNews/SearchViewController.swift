@@ -11,7 +11,7 @@ class SearchViewController: UIViewController {
 
   var tableView: UITableView!
   var articles: [Article] = []
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -79,4 +79,5 @@ extension SearchViewController: UITableViewDelegate {
     articleWebView.urlString = articles[indexPath.row].url
     navigationController?.pushViewController(articleWebView, animated: true)
   }
+
 }

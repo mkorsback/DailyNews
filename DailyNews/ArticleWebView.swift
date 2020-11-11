@@ -10,12 +10,13 @@ import WebKit
 class ArticleWebView: UIViewController {
 
   var urlString: String!
+  let webView = WKWebView()
 
   override func viewDidLoad() {
-    super.viewDidLoad()
+//    super.viewDidLoad()
 
-    let webView = WKWebView(frame: view.frame)
-    view.addSubview(webView)
+//    view.addSubview(webView)
+    view = webView
     webView.load(URLRequest(url: URL(string: urlString)!))
   }
 
