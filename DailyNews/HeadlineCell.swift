@@ -1,5 +1,5 @@
 //
-//  TopHeadlineCell.swift
+//  HeadlineCell.swift
 //  DailyNews
 //
 //  Created by Mathias Korsbäck on 2020-11-10.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TopHeadlineCell: UITableViewCell {
+class HeadlineCell: UITableViewCell {
 
   static var reuseId: String {
     String(describing: self)

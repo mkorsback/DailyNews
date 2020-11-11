@@ -1,5 +1,5 @@
 //
-//  TopHeadlinesViewController.swift
+//  HeadlinesViewController.swift
 //  DailyNews
 //
 //  Created by Mathias Korsbäck on 2020-11-08.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TopHeadlinesViewController: UIViewController {
+class HeadlinesViewController: UIViewController {
 
   typealias DataSource = UITableViewDiffableDataSource<Int, Article>
   typealias Snapshot = NSDiffableDataSourceSnapshot<Int, Article>
@@ -19,7 +19,7 @@ class TopHeadlinesViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    title = "Top Headlines"
+    title = "Headlines"
     view.backgroundColor = .systemBackground
 
     let tableView = UITableView(frame: view.frame)
@@ -35,10 +35,10 @@ class TopHeadlinesViewController: UIViewController {
       tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
       tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
     ])
-    tableView.register(TopHeadlineCell.self, forCellReuseIdentifier: TopHeadlineCell.reuseId)
+    tableView.register(HeadlineCell.self, forCellReuseIdentifier: HeadlineCell.reuseId)
 
     dataSource = DataSource(tableView: tableView, cellProvider: { tableView, indexPath, article -> UITableViewCell? in
-      guard let cell = tableView.dequeueReusableCell(withIdentifier: TopHeadlineCell.reuseId, for: indexPath) as? TopHeadlineCell else {
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: HeadlineCell.reuseId, for: indexPath) as? HeadlineCell else {
         return UITableViewCell()
       }
 
@@ -77,7 +77,7 @@ class TopHeadlinesViewController: UIViewController {
 
 }
 
-extension TopHeadlinesViewController: UITableViewDelegate {
+extension HeadlinesViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let articleView = ArticleWebView()
     articleView.urlString = articles[indexPath.row].url

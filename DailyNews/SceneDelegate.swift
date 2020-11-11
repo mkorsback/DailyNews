@@ -18,9 +18,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window = UIWindow(frame: windowScene.coordinateSpace.bounds)
     window?.windowScene = windowScene
 
-    let nc = UINavigationController(rootViewController: TopHeadlinesViewController())
-    nc.navigationBar.prefersLargeTitles = true
-    window?.rootViewController = nc
+    let headlinesVC = UINavigationController(rootViewController: HeadlinesViewController())
+    headlinesVC.navigationBar.prefersLargeTitles = true
+    headlinesVC.tabBarItem = UITabBarItem(title: "Headlines", image: UIImage(systemName: "globe"), tag: 0)
+    
+    let tabBar = UITabBarController()
+    tabBar.viewControllers = [
+      headlinesVC,
+    ]
+
+    window?.rootViewController = tabBar
     window?.makeKeyAndVisible()
   }
 
