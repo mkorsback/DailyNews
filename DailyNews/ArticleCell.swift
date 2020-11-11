@@ -1,5 +1,5 @@
 //
-//  HeadlineCell.swift
+//  ArticleCell.swift
 //  DailyNews
 //
 //  Created by Mathias Korsbäck on 2020-11-10.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HeadlineCell: UITableViewCell {
+class ArticleCell: UITableViewCell {
 
   static var reuseId: String {
     String(describing: self)
@@ -66,7 +66,9 @@ class HeadlineCell: UITableViewCell {
   func configure(with article: Article) {
     titleLabel.text = article.title
     descriptionLabel.text = article.description
-    headerImage.load(from: URL(string: article.urlToImage!)!)
+    if let urlToImage = article.urlToImage {
+      headerImage.load(from: URL(string: urlToImage)!)
+    }
   }
 
   required init?(coder: NSCoder) {

@@ -13,7 +13,6 @@ class HeadlinesViewController: UIViewController {
   typealias Snapshot = NSDiffableDataSourceSnapshot<Int, Article>
 
   var dataSource: DataSource!
-
   var articles: [Article] = []
 
   override func viewDidLoad() {
@@ -23,26 +22,18 @@ class HeadlinesViewController: UIViewController {
     view.backgroundColor = .systemBackground
 
     let tableView = UITableView(frame: view.frame)
+    view.addSubview(tableView)
+
     tableView.estimatedRowHeight = 150
     tableView.rowHeight = UITableView.automaticDimension
     tableView.separatorStyle = .none
-    view.addSubview(tableView)
-
-    tableView.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      tableView.topAnchor.constraint(equalTo: view.topAnchor),
-      tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-    ])
-    tableView.register(HeadlineCell.self, forCellReuseIdentifier: HeadlineCell.reuseId)
+    tableView.register(ArticleCell.self, forCellReuseIdentifier: ArticleCell.reuseId)
 
     dataSource = DataSource(tableView: tableView, cellProvider: { tableView, indexPath, article -> UITableViewCell? in
-      guard let cell = tableView.dequeueReusableCell(withIdentifier: HeadlineCell.reuseId, for: indexPath) as? HeadlineCell else {
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: ArticleCell.reuseId, for: indexPath) as? ArticleCell else {
         return UITableViewCell()
       }
 
-//      cell.backgroundColor = indexPath.row % 2 == 0 ? UIColor.systemGray5 : UIColor.systemGray3
       cell.configure(with: self.articles[indexPath.row])
       return cell
     })
@@ -58,7 +49,7 @@ class HeadlinesViewController: UIViewController {
         snapshot.appendSections([0])
         snapshot.appendItems(articles)
         DispatchQueue.main.async {
-          self.dataSource.apply(snapshot, animatingDifferences: true)
+          self.dataSource.apply(snapshot, animatingDifferences: false)
         }
       case .failure(let error):
         print(error)
@@ -78,29 +69,11 @@ class HeadlinesViewController: UIViewController {
 }
 
 extension HeadlinesViewController: UITableViewDelegate {
+
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let articleView = ArticleWebView()
-    articleView.urlString = articles[indexPath.row].url
-    navigationController?.pushViewController(articleView, animated: true)
-  }
-}
-
-import WebKit
-
-class ArticleWebView: UIViewController {
-
-  var urlString: String!
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-    let webView = WKWebView(frame: view.frame)
-    view.addSubview(webView)
-    webView.load(URLRequest(url: URL(string: urlString)!))
+    let articleWebView = ArticleWebView()
+    articleWebView.urlString = articles[indexPath.row].url
+    navigationController?.pushViewController(articleWebView, animated: true)
   }
 
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    navigationController?.navigationBar.prefersLargeTitles = false
-  }
 }
