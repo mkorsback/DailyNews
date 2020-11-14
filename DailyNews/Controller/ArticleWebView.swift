@@ -16,6 +16,7 @@ class ArticleWebView: UIViewController {
 //    super.viewDidLoad()
 
 //    view.addSubview(webView)
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share))
     view = webView
     webView.load(URLRequest(url: URL(string: urlString)!))
   }
@@ -23,6 +24,13 @@ class ArticleWebView: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.navigationBar.prefersLargeTitles = false
+  }
+
+  @objc private func share() {
+    if let url = URL(string: urlString) {
+      let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+      present(activityVC, animated: true, completion: nil)
+    }
   }
 }
 

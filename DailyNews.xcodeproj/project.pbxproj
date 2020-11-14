@@ -64,6 +64,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		C7716CB72560018D00FEF2B1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C76F99BC255C0AFC00027C59 /* SearchViewController.swift */,
+				C7A983FA255890070012F021 /* HeadlinesViewController.swift */,
+				C76F99C5255C3A8E00027C59 /* ArticleWebView.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		C7A983EA255890070012F021 = {
 			isa = PBXGroup;
 			children = (
@@ -88,9 +98,7 @@
 				C7A983F8255890070012F021 /* SceneDelegate.swift */,
 				C76F99AA2559922700027C59 /* NewsService.swift */,
 				C76F99D1255C74FF00027C59 /* Model */,
-				C76F99BC255C0AFC00027C59 /* SearchViewController.swift */,
-				C7A983FA255890070012F021 /* HeadlinesViewController.swift */,
-				C76F99C5255C3A8E00027C59 /* ArticleWebView.swift */,
+				C7716CB72560018D00FEF2B1 /* Controller */,
 				C76F99B3255A940300027C59 /* ArticleCell.swift */,
 				C76F99B0255A93B800027C59 /* CachedImageView.swift */,
 				C7A983FF255890080012F021 /* Assets.xcassets */,
@@ -252,7 +260,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -307,7 +315,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
