@@ -1,5 +1,5 @@
 //
-//  ArticleWebView.swift
+//  ArticleWebViewController.swift
 //  DailyNews
 //
 //  Created by Mathias Korsbäck on 2020-11-11.
@@ -7,7 +7,7 @@
 
 import WebKit
 
-class ArticleWebView: UIViewController {
+class ArticleWebViewController: UIViewController {
 
   var urlString: String!
   let webView = WKWebView()
@@ -33,4 +33,3 @@ class ArticleWebView: UIViewController {
     }
   }
 }
-

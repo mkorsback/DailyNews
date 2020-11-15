@@ -12,4 +12,5 @@ struct ApiResponse: Decodable {
   let code: String?
   let message: String?
   let articles: [Article]?
+  let sources: [Source]?
 }

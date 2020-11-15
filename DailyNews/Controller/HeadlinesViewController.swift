@@ -89,7 +89,7 @@ class HeadlinesViewController: UIViewController {
 
 extension HeadlinesViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let articleWebView = ArticleWebView()
+    let articleWebView = ArticleWebViewController()
     articleWebView.urlString = articles[indexPath.row].url
     navigationController?.pushViewController(articleWebView, animated: true)
   }

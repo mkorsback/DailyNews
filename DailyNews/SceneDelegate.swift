@@ -27,15 +27,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     headlinesVC.navigationBar.prefersLargeTitles = true
     headlinesVC.tabBarItem = UITabBarItem(title: "Headlines", image: UIImage(systemName: "globe"), tag: 0)
 
-    let searchVC = UINavigationController(rootViewController: SearchViewController())
-    searchVC.navigationBar.prefersLargeTitles = true
-    searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
+//    let searchVC = UINavigationController(rootViewController: SearchViewController())
+//    searchVC.navigationBar.prefersLargeTitles = true
+//    searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
+
+    let sourcesVC = UINavigationController(rootViewController: SourcesViewController())
+    sourcesVC.navigationBar.prefersLargeTitles = true
+    sourcesVC.tabBarItem = UITabBarItem(title: "Sources", image: UIImage(systemName: "building.columns"), tag: 2)
 
     let tabBar = UITabBarController()
     tabBar.tabBar.tintColor = .black
     tabBar.viewControllers = [
       headlinesVC,
-      searchVC,
+//      searchVC,
+      sourcesVC,
     ]
 
     window?.rootViewController = tabBar
