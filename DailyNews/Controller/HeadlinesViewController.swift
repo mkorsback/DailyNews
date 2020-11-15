@@ -58,6 +58,8 @@ class HeadlinesViewController: UIViewController {
       return cell
     })
 
+    dataSource.defaultRowAnimation = .fade
+
     tableView.dataSource = dataSource
     tableView.delegate = self
   }

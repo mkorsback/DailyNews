@@ -7,19 +7,21 @@
 
 import UIKit
 
-struct Source: Decodable, Hashable {
+struct Section: Hashable {
   let name: String
-  let category: String
+  var collapsed: Bool
 }
 
 class SourcesViewController: UIViewController {
 
-  typealias DataSource = UITableViewDiffableDataSource<String, Source>
-  typealias Snapshot = NSDiffableDataSourceSnapshot<String, Source>
+  typealias DataSource = UITableViewDiffableDataSource<Section, Source>
+  typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Source>
 
   var dataSource: DataSource!
   var sources: [Source] = []
-  var categories: [String] = []
+  var sections: [Section] = []
+
+  // MARK: - Lifecycle
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -36,37 +38,46 @@ class SourcesViewController: UIViewController {
     navigationController?.navigationBar.prefersLargeTitles = true
   }
 
+  // MARK: - Private helper methods
+
   private func setupTableView() {
     let tableView = UITableView(frame: view.frame)
     view.addSubview(tableView)
 
+    tableView.estimatedRowHeight = 48.0
+    tableView.rowHeight = UITableView.automaticDimension
+    tableView.allowsSelection = false
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
 
     dataSource = DataSource(tableView: tableView, cellProvider: { tableView, indexPath, source -> UITableViewCell? in
       let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
+      cell.accessoryType = .disclosureIndicator
       cell.textLabel?.text = source.name
       return cell
     })
 
+    dataSource.defaultRowAnimation = .fade
     tableView.dataSource = dataSource
     tableView.delegate = self
+    tableView.tableFooterView = UIView()
   }
 
   private func applySnapshot() {
-    for source in sources {
-      if !categories.contains(source.category) {
-        categories.append(source.category)
-      }
+    var categoryNames = [String]()
+    
+    for category in sections {
+      categoryNames.append(category.name)
     }
-    print(categories)
 
     var snapshot = Snapshot()
 
-    snapshot.appendSections(categories)
+    snapshot.appendSections(sections)
 
-    for category in categories {
-      let categorySources = sources.filter { $0.category == category }
-      snapshot.appendItems(categorySources, toSection: category)
+    for category in sections {
+      if !category.collapsed {
+        let sourcesForCategory = sources.filter { $0.category == category.name }
+        snapshot.appendItems(sourcesForCategory, toSection: category)
+      }
     }
 
     DispatchQueue.main.async {
@@ -79,6 +90,11 @@ class SourcesViewController: UIViewController {
       switch result {
       case .success(let sources):
         self.sources = sources
+        for source in sources {
+          if self.sections.filter({ $0.name == source.category }).isEmpty {
+            self.sections.append(Section(name: source.category, collapsed: true))
+          }
+        }
         self.applySnapshot()
       case .failure(let error):
         print(error)
@@ -87,10 +103,28 @@ class SourcesViewController: UIViewController {
   }
 }
 
+// MARK: - UITableViewDelegate extension
+
 extension SourcesViewController: UITableViewDelegate {
+
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let titleView = UITableViewHeaderFooterView()
-    titleView.textLabel?.text = categories[section].capitalized
-    return titleView
+    let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CollapsibleHeaderView.reuseId) as? CollapsibleHeaderView ?? CollapsibleHeaderView(reuseIdentifier: CollapsibleHeaderView.reuseId)
+    headerView.configure(with: sections[section], forSection: section)
+    headerView.delegate = self
+    return headerView
+  }
+
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 48
+  }
+}
+
+// MARK: - CollapsibleHeaderDelegate extension
+
+extension SourcesViewController: CollapsibleHeaderDelegate {
+
+  func toggleSection(_ section: Int) {
+    sections[section].collapsed.toggle()
+    applySnapshot()
   }
 }
