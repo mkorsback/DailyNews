@@ -42,6 +42,8 @@ class ArticleCell: UITableViewCell {
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+    selectionStyle = .none
+    
     contentView.addSubview(headerImage)
     contentView.addSubview(titleLabel)
     contentView.addSubview(descriptionLabel)
@@ -66,8 +68,8 @@ class ArticleCell: UITableViewCell {
   func configure(with article: Article) {
     titleLabel.text = article.title
     descriptionLabel.text = article.description
-    if let urlToImage = article.urlToImage {
-      headerImage.load(from: URL(string: urlToImage)!)
+    if let urlToImage = article.urlToImage, let url = URL(string: urlToImage) {
+      headerImage.load(from: url)
     }
   }
 

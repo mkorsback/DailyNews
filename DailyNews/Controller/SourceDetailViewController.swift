@@ -94,7 +94,7 @@ class SourceDetailViewController: UIViewController {
     headlinesTableView.separatorStyle = .none
     headlinesTableView.register(ArticleCell.self, forCellReuseIdentifier: ArticleCell.reuseId)
     headlinesTableView.dataSource = self
-//    headlinesTableView.delegate = self
+    headlinesTableView.delegate = self
 
     setupUI()
     fetchHeadlines()
@@ -190,7 +190,7 @@ class SourceDetailViewController: UIViewController {
 
 // MARK: - UITableViewDatasource, UITableViewDelegate extension
 
-extension SourceDetailViewController: UITableViewDataSource {
+extension SourceDetailViewController: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return articles.count
   }
@@ -204,7 +204,14 @@ extension SourceDetailViewController: UITableViewDataSource {
     return cell
   }
 
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let articleWebView = ArticleWebViewController()
+    articleWebView.urlString = articles[indexPath.row].url
+    navigationController?.pushViewController(articleWebView, animated: true)
+  }
+
 }
+
 extension UILabel {
   func hyphenate() {
     let paragraphStyle = NSMutableParagraphStyle()

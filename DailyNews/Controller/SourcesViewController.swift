@@ -52,6 +52,7 @@ class SourcesViewController: UIViewController {
       let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
       cell.accessoryType = .disclosureIndicator
       cell.textLabel?.text = source.name
+      cell.selectionStyle = .none
       return cell
     })
 
