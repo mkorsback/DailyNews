@@ -7,32 +7,51 @@
 
 import Foundation
 
-struct NewsService {
+enum Endpoint {
+  case headlines
+  case search(query: String)
+  case sources
 
-  static var shared = NewsService()
-  private let baseUrl = "https://newsapi.org/v2/"
-  private let region = Locale.current.regionCode ?? "us"
-  private var key: NSDictionary!
+  private var baseUrl: String {
+   return "https://newsapi.org/v2/"
+  }
 
-  private init() {
+  private var key: NSDictionary! {
     if let keyFile = Bundle.main.path(forResource: "Key", ofType: "plist") {
-      key = NSDictionary(contentsOfFile: keyFile)
+      return NSDictionary(contentsOfFile: keyFile)
     } else {
       fatalError("Needs API key in order to fetch news from API.")
     }
   }
 
+  private var region: String {
+    return Locale.current.regionCode ?? "us"
+  }
+}
+
+extension Endpoint {
+  var url: URL {
+    switch self {
+    case .headlines:
+      return URL(string: baseUrl + "top-headlines?apiKey=\(key["apiKey"]!)&country=\(region)")!
+    case .search(let query):
+      return URL(string: baseUrl + "everything?q=\(query)&apiKey=\(key["apiKey"]!)")!
+    case .sources:
+      return URL(string: baseUrl + "sources?apiKey=\(key["apiKey"]!)")!
+    }
+  }
+}
+
+struct NewsService {
+
+  static var shared = NewsService()
+
+  private init() {}
+
   // MARK: - API methods
 
   func fetchTopHeadlines(completion: @escaping(Result<[Article], Error>) -> Void) {
-    let urlString = baseUrl + "top-headlines?apiKey=\(key["apiKey"]!)&country=\(region)"
-
-    guard let url = URL(string: urlString) else {
-      completion(.failure(NSError(domain: "bad url", code: 0, userInfo: [:])))
-      return
-    }
-
-    performRequest(url: url) { result in
+    performRequest(endpoint: .headlines) { result in
       switch result {
       case .success(let apiResponse):
         completion(.success(apiResponse.articles ?? []))
@@ -43,14 +62,7 @@ struct NewsService {
   }
 
   func search(for searchString: String, completion: @escaping(Result<[Article], Error>) -> Void) {
-    let urlString = baseUrl + "everything?q=\(searchString)&apiKey=\(key["apiKey"]!)"
-
-    guard let url = URL(string: urlString) else {
-      completion(.failure(NSError(domain: "bad url", code: 0, userInfo: [:])))
-      return
-    }
-
-    performRequest(url: url) { result in
+    performRequest(endpoint: .search(query: searchString)) { result in
       switch result {
       case .success(let apiResponse):
         completion(.success(apiResponse.articles ?? []))
@@ -61,14 +73,7 @@ struct NewsService {
   }
 
   func fetchSources(completion: @escaping(Result<[Source], Error>) -> Void) {
-    let urlString = baseUrl + "sources?apiKey=\(key["apiKey"]!)"
-
-    guard let url = URL(string: urlString) else {
-      completion(.failure(NSError(domain: "bad url", code: 0, userInfo: [:])))
-      return
-    }
-
-    performRequest(url: url) { result in
+    performRequest(endpoint: .sources) { result in
       switch result {
       case .success(let apiResponse):
         completion(.success(apiResponse.sources ?? []))
@@ -80,8 +85,8 @@ struct NewsService {
 
   // MARK: - Private helper methods
 
-  private func performRequest(url: URL, completion: @escaping(Result<ApiResponse, Error>) -> Void) {
-    URLSession.shared.dataTask(with: url) { data, response, error in
+  private func performRequest(endpoint: Endpoint, completion: @escaping(Result<ApiResponse, Error>) -> Void) {
+    URLSession.shared.dataTask(with: endpoint.url) { data, response, error in
       if let error = error {
         completion(.failure(NSError(domain: error.localizedDescription, code: 0, userInfo: [:])))
         return

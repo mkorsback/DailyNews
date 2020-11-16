@@ -25,6 +25,7 @@
 		C7E8B6CB25602845004BB255 /* SourcesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E8B6CA25602845004BB255 /* SourcesViewController.swift */; };
 		C7E8B6CF25619A72004BB255 /* CollapsibleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E8B6CE25619A72004BB255 /* CollapsibleHeaderView.swift */; };
 		C7E8B6D325619B1B004BB255 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E8B6D225619B1B004BB255 /* Source.swift */; };
+		C7E8B6D62561D228004BB255 /* SourceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E8B6D52561D228004BB255 /* SourceDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		C7E8B6CA25602845004BB255 /* SourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcesViewController.swift; sourceTree = "<group>"; };
 		C7E8B6CE25619A72004BB255 /* CollapsibleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleHeaderView.swift; sourceTree = "<group>"; };
 		C7E8B6D225619B1B004BB255 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		C7E8B6D52561D228004BB255 /* SourceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				C7A983FA255890070012F021 /* HeadlinesViewController.swift */,
 				C76F99C5255C3A8E00027C59 /* ArticleWebViewController.swift */,
 				C7E8B6CA25602845004BB255 /* SourcesViewController.swift */,
+				C7E8B6D52561D228004BB255 /* SourceDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				C76F99B1255A93B800027C59 /* CachedImageView.swift in Sources */,
 				C76F99C6255C3A8E00027C59 /* ArticleWebViewController.swift in Sources */,
 				C76F99B4255A940300027C59 /* ArticleCell.swift in Sources */,
+				C7E8B6D62561D228004BB255 /* SourceDetailViewController.swift in Sources */,
 				C76F99AB2559922700027C59 /* NewsService.swift in Sources */,
 				C7A983F9255890070012F021 /* SceneDelegate.swift in Sources */,
 				C7E8B6D325619B1B004BB255 /* Source.swift in Sources */,

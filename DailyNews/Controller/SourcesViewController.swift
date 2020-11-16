@@ -46,7 +46,6 @@ class SourcesViewController: UIViewController {
 
     tableView.estimatedRowHeight = 48.0
     tableView.rowHeight = UITableView.automaticDimension
-    tableView.allowsSelection = false
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
 
     dataSource = DataSource(tableView: tableView, cellProvider: { tableView, indexPath, source -> UITableViewCell? in
@@ -63,12 +62,6 @@ class SourcesViewController: UIViewController {
   }
 
   private func applySnapshot() {
-    var categoryNames = [String]()
-    
-    for category in sections {
-      categoryNames.append(category.name)
-    }
-
     var snapshot = Snapshot()
 
     snapshot.appendSections(sections)
@@ -101,11 +94,19 @@ class SourcesViewController: UIViewController {
       }
     }
   }
+
 }
 
 // MARK: - UITableViewDelegate extension
 
 extension SourcesViewController: UITableViewDelegate {
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let sourceDetailVC = SourceDetailViewController()
+    let source = sources.filter { $0.category == sections[indexPath.section].name }[indexPath.row]
+    sourceDetailVC.configure(with: source)
+    navigationController?.pushViewController(sourceDetailVC, animated: true)
+  }
 
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CollapsibleHeaderView.reuseId) as? CollapsibleHeaderView ?? CollapsibleHeaderView(reuseIdentifier: CollapsibleHeaderView.reuseId)
@@ -117,6 +118,7 @@ extension SourcesViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 48
   }
+
 }
 
 // MARK: - CollapsibleHeaderDelegate extension
@@ -127,4 +129,5 @@ extension SourcesViewController: CollapsibleHeaderDelegate {
     sections[section].collapsed.toggle()
     applySnapshot()
   }
+
 }
