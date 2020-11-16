@@ -11,6 +11,7 @@ enum Endpoint {
   case headlines
   case search(query: String)
   case sources
+  case headlinesFor(id: String)
 
   private var baseUrl: String {
    return "https://newsapi.org/v2/"
@@ -38,6 +39,8 @@ extension Endpoint {
       return URL(string: baseUrl + "everything?q=\(query)&apiKey=\(key["apiKey"]!)")!
     case .sources:
       return URL(string: baseUrl + "sources?apiKey=\(key["apiKey"]!)")!
+    case .headlinesFor(let id):
+      return URL(string: baseUrl + "top-headlines?apiKey=\(key["apiKey"]!)&sources=\(id)")!
     }
   }
 }
@@ -82,6 +85,19 @@ struct NewsService {
       }
     }
   }
+
+  func fetchTopHeadlines(for id: String, completion: @escaping(Result<[Article], Error>) -> Void) {
+    performRequest(endpoint: .headlinesFor(id: id)) { result in
+      switch result {
+      case .success(let apiResponse):
+        completion(.success(apiResponse.articles ?? []))
+      case .failure(let error):
+        completion(.failure(NSError(domain: error.localizedDescription, code: 0, userInfo: [:])))
+      }
+    }
+  }
+
+
 
   // MARK: - Private helper methods
 
