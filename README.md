@@ -36,11 +36,11 @@ To run this app you need to register an account at the News API service ([newsap
 
 | Headlines | Search | Article View |
 | -------- | --------- | --------- |
-| ![Headlines](Screenshots/Daily News Headlines.png) | ![Search](Screenshots/Daily News Search.png) | ![Article View](Screenshots/Daily News Article View.png) |
+| ![Headlines](./Screenshots/DailyNewsHeadlines.png) | ![Search](./Screenshots/DailyNewsSearch.png) | ![Article View](./Screenshots/DailyNewsArticleView.png) |
 
 | Sources | Source View |
 | -------- | --------- |
-| ![Sources](Screenshots/Daily News Sources.png) | ![Source View](Screenshots/Daily News Source View.png) |
+| ![Sources](./Screenshots/DailyNewsSources.png) | ![Source View](./Screenshots/DailyNewsSourceView.png) |
 
 ## Comments and ideas?
 Issues and PR:s are encouraged and highly welcome.
