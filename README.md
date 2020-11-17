@@ -1,14 +1,22 @@
 # DailyNews
 > Small iOS client showing news from [News API](https://newsapi.org/).
 
+## Table of Contents
+* [General Info](#general-info)
+* [Features](#features)
+* [Setup](#setup)
+* [Screenshots](#screenshots)
+* [Feedback](#feedback)
+
+
 
 ## General Info
 A small and clean iOS app for reading live news sourced from News API. Using 100% programmatic UI and no external dependencies.
 
 ### Technologies used
 * Xcode 12
-* Swift 5.3
-* iOS 13.6
+* Swift 5
+* iOS 13
 * UIKit
 * 100% programmatic UI (no storyboard)
 * UITableView (both regular and diffable)
@@ -17,6 +25,19 @@ A small and clean iOS app for reading live news sourced from News API. Using 100
 * JSON parsing using JSONDecoder
 * Public API
 * Async download of images
+
+## Features
+✅ Show news headlines  
+✅ Search in news  
+✅ Show article in WKWebView  
+✅ Share article  
+✅ Show sources  
+✅ Show source info  
+#### ToDo
+❇️ Filter sources based on country and/or language  
+❇️ Filter headlines based on country and/or language  
+❇️ Mark articles to read later  
+
 
 ## Setup
 To run this app you need to register an account at the News API service ([newsapi.org](https://newsapi.org)) and get an API key. Put this key in file called `Key.plist` and you should be all set. For your conveninence, a `Key-SAMPLE.plist` file has been included in the project.
@@ -42,6 +63,6 @@ To run this app you need to register an account at the News API service ([newsap
 | -------- | --------- |
 | ![Sources](./Screenshots/DailyNewsSources.png) | ![Source View](./Screenshots/DailyNewsSourceView.png) |
 
-## Comments and ideas?
+## Feedback
 Issues and PR:s are encouraged and highly welcome.
 
