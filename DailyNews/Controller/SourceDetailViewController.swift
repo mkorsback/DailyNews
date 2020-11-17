@@ -9,6 +9,8 @@ import UIKit
 
 class SourceDetailViewController: UIViewController {
 
+  // MARK: - Properties
+  
   let nameLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -48,13 +50,6 @@ class SourceDetailViewController: UIViewController {
     return label
   }()
 
-  let urlLabel: UILabel = {
-    let label = UILabel()
-    label.translatesAutoresizingMaskIntoConstraints = false
-    label.font = UIFont.preferredFont(forTextStyle: .callout)
-    return label
-  }()
-
   let topSeparatorView: UIView = {
     let view = UIView()
     view.translatesAutoresizingMaskIntoConstraints = false
@@ -86,6 +81,8 @@ class SourceDetailViewController: UIViewController {
   var sourceId: String?
   var articles: [Article] = []
 
+  // MARK: - Lifecycle
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -100,6 +97,8 @@ class SourceDetailViewController: UIViewController {
     fetchHeadlines()
   }
 
+  // MARK: - Helper methods
+
   func configure(with source: Source) {
     sourceId = source.id
     nameLabel.text = source.name
@@ -107,8 +106,9 @@ class SourceDetailViewController: UIViewController {
     languageLabel.text = source.language
     descriptionLabel.text = source.description
 //    descriptionLabel.hyphenate()
-    urlLabel.text = source.url
   }
+
+  // MARK: - Private helper methods
 
   private func setupUI() {
     view.backgroundColor = .systemBackground
@@ -116,7 +116,6 @@ class SourceDetailViewController: UIViewController {
     view.addSubview(descriptionLabel)
     view.addSubview(flagLabel)
     view.addSubview(languageLabel)
-//    view.addSubview(urlLabel)
     view.addSubview(topSeparatorView)
     view.addSubview(headLinesLabel)
     view.addSubview(bottomSeparatorView)
@@ -140,10 +139,7 @@ class SourceDetailViewController: UIViewController {
       descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
       descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
 
-//      urlLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
-//      urlLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-
-      topSeparatorView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
+      topSeparatorView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
       topSeparatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 70),
       topSeparatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -70),
       topSeparatorView.heightAnchor.constraint(equalToConstant: 1),
@@ -180,7 +176,7 @@ class SourceDetailViewController: UIViewController {
   private func flag(country: String) -> String {
     let base: UInt32 = 127397
     var s = ""
-    for v in (country == "zh" ? "cn" : country).uppercased().unicodeScalars {
+    for v in (country == "zh" ? "cn" : country).uppercased().unicodeScalars { // handle zh/cn due to newsapi.org delivering incorrect country code for China
       s.unicodeScalars.append(UnicodeScalar(base + v.value)!)
     }
     return s
@@ -211,6 +207,8 @@ extension SourceDetailViewController: UITableViewDataSource, UITableViewDelegate
   }
 
 }
+
+// MARK: - UILabel extension
 
 extension UILabel {
   func hyphenate() {

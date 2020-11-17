@@ -17,6 +17,8 @@ class SourcesViewController: UIViewController {
   typealias DataSource = UITableViewDiffableDataSource<Section, Source>
   typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Source>
 
+  // MARK: - Properties
+
   var dataSource: DataSource!
   var sources: [Source] = []
   var sections: [Section] = []

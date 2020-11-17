@@ -65,7 +65,8 @@ struct NewsService {
   }
 
   func search(for searchString: String, completion: @escaping(Result<[Article], Error>) -> Void) {
-    performRequest(endpoint: .search(query: searchString)) { result in
+    let query = searchString.addingPercentEncoding(withAllowedCharacters: .alphanumerics)!
+    performRequest(endpoint: .search(query: query)) { result in
       switch result {
       case .success(let apiResponse):
         completion(.success(apiResponse.articles ?? []))
