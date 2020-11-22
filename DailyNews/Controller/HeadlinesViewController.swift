@@ -15,6 +15,8 @@ class HeadlinesViewController: UIViewController {
   var dataSource: DataSource!
   var articles: [Article] = []
 
+  private let refreshControl = UIRefreshControl()
+
   // MARK: - Lifecycle methods
 
   override func viewDidLoad() {
@@ -62,6 +64,14 @@ class HeadlinesViewController: UIViewController {
 
     tableView.dataSource = dataSource
     tableView.delegate = self
+
+    refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+    tableView.refreshControl = refreshControl
+  }
+
+  @objc private func refresh() {
+    fetchHeadlines()
+    refreshControl.endRefreshing()
   }
 
   private func applySnapshot() {
