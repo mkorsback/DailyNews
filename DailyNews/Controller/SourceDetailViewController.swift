@@ -81,11 +81,15 @@ class SourceDetailViewController: UIViewController {
   var sourceId: String?
   var articles: [Article] = []
 
+  private let refreshControl = UIRefreshControl()
+
   // MARK: - Lifecycle
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+    headlinesTableView.refreshControl = refreshControl
     headlinesTableView.estimatedRowHeight = 150
     headlinesTableView.rowHeight = UITableView.automaticDimension
     headlinesTableView.separatorStyle = .none
@@ -109,6 +113,11 @@ class SourceDetailViewController: UIViewController {
   }
 
   // MARK: - Private helper methods
+
+  @objc private func refresh() {
+    fetchHeadlines()
+    refreshControl.endRefreshing()
+  }
 
   private func setupUI() {
     view.backgroundColor = .systemBackground
@@ -175,11 +184,12 @@ class SourceDetailViewController: UIViewController {
 
   private func flag(country: String) -> String {
     let base: UInt32 = 127397
-    var s = ""
-    for v in (country == "zh" ? "cn" : country).uppercased().unicodeScalars { // handle zh/cn due to newsapi.org delivering incorrect country code for China
-      s.unicodeScalars.append(UnicodeScalar(base + v.value)!)
+    var flagString = ""
+    // handle zh/cn due to newsapi.org delivering incorrect country code for China
+    for v in (country == "zh" ? "cn" : country).uppercased().unicodeScalars {
+      flagString.unicodeScalars.append(UnicodeScalar(base + v.value)!)
     }
-    return s
+    return flagString
   }
 
 }
