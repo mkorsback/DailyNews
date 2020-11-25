@@ -11,7 +11,7 @@
 
 
 ## General Info
-A small and clean iOS app for reading live news sourced from News API. Using 100% programmatic UI and no external dependencies.
+A small and clean iOS app for reading live news sourced from News API. Using 100% programmatic UI and no 3rd party modules.
 
 ### Technologies used
 * Xcode 12
