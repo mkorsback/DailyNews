@@ -29,7 +29,6 @@ class SourcesViewController: UIViewController {
     super.viewDidLoad()
 
     title = "Sources"
-    view.backgroundColor = .systemBackground
 
     setupTableView()
     fetchSources()
@@ -70,10 +69,8 @@ class SourcesViewController: UIViewController {
     snapshot.appendSections(sections)
 
     for category in sections where !category.collapsed {
-//      if !category.collapsed {
       let sourcesForCategory = sources.filter { $0.category == category.name }
       snapshot.appendItems(sourcesForCategory, toSection: category)
-//      }
     }
 
     DispatchQueue.main.async {

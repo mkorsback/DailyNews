@@ -17,28 +17,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     window = UIWindow(frame: windowScene.coordinateSpace.bounds)
     window?.windowScene = windowScene
 
-    // forcing light mode until we have added support for dark mode
-    if #available(iOS 13.0, *) {
-      window?.overrideUserInterfaceStyle = .light
-    }
-
     let headlinesVC = UINavigationController(rootViewController: HeadlinesViewController())
     headlinesVC.navigationBar.prefersLargeTitles = true
     headlinesVC.tabBarItem = UITabBarItem(title: "Headlines", image: UIImage(systemName: "globe"), tag: 0)
-
-//    let searchVC = UINavigationController(rootViewController: SearchViewController())
-//    searchVC.navigationBar.prefersLargeTitles = true
-//    searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
 
     let sourcesVC = UINavigationController(rootViewController: SourcesViewController())
     sourcesVC.navigationBar.prefersLargeTitles = true
     sourcesVC.tabBarItem = UITabBarItem(title: "Sources", image: UIImage(systemName: "building.columns"), tag: 2)
 
     let tabBar = UITabBarController()
-    tabBar.tabBar.tintColor = .black
     tabBar.viewControllers = [
       headlinesVC,
-//      searchVC,
       sourcesVC,
     ]
 

@@ -24,7 +24,6 @@ class CollapsibleHeaderView: UITableViewHeaderFooterView {
     let imageView = UIImageView()
     let image = UIImage(systemName: "chevron.right")!
     imageView.image = image
-    imageView.tintColor = .black
     imageView.translatesAutoresizingMaskIntoConstraints = false
     return imageView
   }()
@@ -39,7 +38,6 @@ class CollapsibleHeaderView: UITableViewHeaderFooterView {
   override init(reuseIdentifier: String?) {
     super.init(reuseIdentifier: reuseIdentifier)
 
-    contentView.backgroundColor = .white
     setupUI()
 
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
