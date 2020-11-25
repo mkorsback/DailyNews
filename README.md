@@ -25,6 +25,7 @@ A small and clean iOS app for reading live news sourced from News API. Using 100
 * JSON parsing using JSONDecoder
 * Public API
 * Async download of images
+* SwiftLint
 
 ## Features
 ✅ Show news headlines  
@@ -52,6 +53,9 @@ To run this app you need to register an account at the News API service ([newsap
 </dict>
 </plist>
 ```
+
+### SwiftLint
+This project uses [SwiftLint](https://github.com/realm/SwiftLint) in order to enforce Swift style and conventions. Some minor adjustments to the default rules in SwiftLint can be found in the file `.swiftlint.yml`.
 
 ## Screenshots
 
