@@ -50,13 +50,13 @@ class SourcesViewController: UIViewController {
     tableView.rowHeight = UITableView.automaticDimension
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
 
-    dataSource = DataSource(tableView: tableView, cellProvider: { tableView, indexPath, source -> UITableViewCell? in
+    dataSource = DataSource(tableView: tableView) { tableView, indexPath, source -> UITableViewCell? in
       let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
       cell.accessoryType = .disclosureIndicator
       cell.textLabel?.text = source.name
       cell.selectionStyle = .none
       return cell
-    })
+    }
 
     dataSource.defaultRowAnimation = .fade
     tableView.dataSource = dataSource

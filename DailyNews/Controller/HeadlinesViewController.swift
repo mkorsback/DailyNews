@@ -51,7 +51,7 @@ class HeadlinesViewController: UIViewController {
     tableView.separatorStyle = .none
     tableView.register(ArticleCell.self, forCellReuseIdentifier: ArticleCell.reuseId)
 
-    dataSource = DataSource(tableView: tableView, cellProvider: { tableView, indexPath, article -> UITableViewCell? in
+    dataSource = DataSource(tableView: tableView) { tableView, indexPath, article -> UITableViewCell? in
       guard let cell = tableView.dequeueReusableCell(withIdentifier: ArticleCell.reuseId, for: indexPath) as? ArticleCell else {
         return UITableViewCell()
       }
@@ -59,7 +59,7 @@ class HeadlinesViewController: UIViewController {
 //      cell.configure(with: self.articles[indexPath.row])
       cell.configure(with: article)
       return cell
-    })
+    }
 
     dataSource.defaultRowAnimation = .fade
 
