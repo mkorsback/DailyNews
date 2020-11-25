@@ -43,7 +43,7 @@ class ArticleCell: UITableViewCell {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
 
     selectionStyle = .none
-    
+
     contentView.addSubview(headerImage)
     contentView.addSubview(titleLabel)
     contentView.addSubview(descriptionLabel)

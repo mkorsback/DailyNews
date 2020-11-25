@@ -69,11 +69,11 @@ class SourcesViewController: UIViewController {
 
     snapshot.appendSections(sections)
 
-    for category in sections {
-      if !category.collapsed {
-        let sourcesForCategory = sources.filter { $0.category == category.name }
-        snapshot.appendItems(sourcesForCategory, toSection: category)
-      }
+    for category in sections where !category.collapsed {
+//      if !category.collapsed {
+      let sourcesForCategory = sources.filter { $0.category == category.name }
+      snapshot.appendItems(sourcesForCategory, toSection: category)
+//      }
     }
 
     DispatchQueue.main.async {
@@ -112,7 +112,8 @@ extension SourcesViewController: UITableViewDelegate {
   }
 
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CollapsibleHeaderView.reuseId) as? CollapsibleHeaderView ?? CollapsibleHeaderView(reuseIdentifier: CollapsibleHeaderView.reuseId)
+    let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CollapsibleHeaderView.reuseId)
+      as? CollapsibleHeaderView ?? CollapsibleHeaderView(reuseIdentifier: CollapsibleHeaderView.reuseId)
     headerView.configure(with: sections[section], forSection: section)
     headerView.delegate = self
     return headerView

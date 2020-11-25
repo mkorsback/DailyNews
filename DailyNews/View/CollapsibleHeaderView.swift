@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol CollapsibleHeaderDelegate {
+protocol CollapsibleHeaderDelegate: class {
   func toggleSection(_ section: Int)
 }
 
@@ -16,8 +16,8 @@ class CollapsibleHeaderView: UITableViewHeaderFooterView {
   static var reuseId: String {
     String(describing: self)
   }
-  
-  var delegate: CollapsibleHeaderDelegate?
+
+  weak var delegate: CollapsibleHeaderDelegate?
   var sectionId = 0
 
   let chevronImageView: UIImageView = {

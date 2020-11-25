@@ -31,6 +31,8 @@
 		C7E8B6F72563EEB1004BB255 /* DailyNewsSources.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E8B6F22563EEB1004BB255 /* DailyNewsSources.png */; };
 		C7E8B6F82563EEB1004BB255 /* DailyNewsSearch.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E8B6F32563EEB1004BB255 /* DailyNewsSearch.png */; };
 		C7E8B6F92563EEB1004BB255 /* DailyNewsHeadlines.png in Resources */ = {isa = PBXBuildFile; fileRef = C7E8B6F42563EEB1004BB255 /* DailyNewsHeadlines.png */; };
+		C7E8B707256E6D2B004BB255 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C7E8B706256E6D2B004BB255 /* .swiftlint.yml */; };
+		C7E8B70A256E73FE004BB255 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E8B709256E73FE004BB255 /* Endpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		C7E8B6F22563EEB1004BB255 /* DailyNewsSources.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DailyNewsSources.png; sourceTree = "<group>"; };
 		C7E8B6F32563EEB1004BB255 /* DailyNewsSearch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DailyNewsSearch.png; sourceTree = "<group>"; };
 		C7E8B6F42563EEB1004BB255 /* DailyNewsHeadlines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DailyNewsHeadlines.png; sourceTree = "<group>"; };
+		C7E8B706256E6D2B004BB255 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		C7E8B709256E73FE004BB255 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,7 @@
 		C7A983EA255890070012F021 = {
 			isa = PBXGroup;
 			children = (
+				C7E8B706256E6D2B004BB255 /* .swiftlint.yml */,
 				C7E8B6D82563EC42004BB255 /* Screenshots */,
 				C76F999B2558936E00027C59 /* README.md */,
 				C7A983F5255890070012F021 /* DailyNews */,
@@ -145,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				C76F99AA2559922700027C59 /* NewsService.swift */,
+				C7E8B709256E73FE004BB255 /* Endpoint.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -171,6 +177,7 @@
 				C7A983EF255890070012F021 /* Sources */,
 				C7A983F0255890070012F021 /* Frameworks */,
 				C7A983F1255890070012F021 /* Resources */,
+				C7E8B6FF256E68F9004BB255 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -228,10 +235,31 @@
 				C7E8B6F72563EEB1004BB255 /* DailyNewsSources.png in Resources */,
 				C7E8B6F52563EEB1004BB255 /* DailyNewsSourceView.png in Resources */,
 				C7E8B6F62563EEB1004BB255 /* DailyNewsArticleView.png in Resources */,
+				C7E8B707256E6D2B004BB255 /* .swiftlint.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C7E8B6FF256E68F9004BB255 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C7A983EF255890070012F021 /* Sources */ = {
@@ -242,6 +270,7 @@
 				C7A983FB255890070012F021 /* HeadlinesViewController.swift in Sources */,
 				C76F99BD255C0AFC00027C59 /* SearchViewController.swift in Sources */,
 				C76F99CC255C74DD00027C59 /* Article.swift in Sources */,
+				C7E8B70A256E73FE004BB255 /* Endpoint.swift in Sources */,
 				C76F99CF255C74F000027C59 /* ApiResponse.swift in Sources */,
 				C7E8B6CB25602845004BB255 /* SourcesViewController.swift in Sources */,
 				C7A983F7255890070012F021 /* AppDelegate.swift in Sources */,

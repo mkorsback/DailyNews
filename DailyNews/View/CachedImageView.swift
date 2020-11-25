@@ -32,7 +32,7 @@ class CachedImageView: UIImageView {
     spinner.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     spinner.startAnimating()
 
-    URLSession.shared.dataTask(with: url) { data, response, error in
+    URLSession.shared.dataTask(with: url) { data, _, error in
       if error != nil {
         return
       }

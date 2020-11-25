@@ -56,7 +56,8 @@ class HeadlinesViewController: UIViewController {
         return UITableViewCell()
       }
 
-      cell.configure(with: self.articles[indexPath.row])
+//      cell.configure(with: self.articles[indexPath.row])
+      cell.configure(with: article)
       return cell
     })
 

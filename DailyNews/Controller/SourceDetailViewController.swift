@@ -10,7 +10,7 @@ import UIKit
 class SourceDetailViewController: UIViewController {
 
   // MARK: - Properties
-  
+
   let nameLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -186,8 +186,8 @@ class SourceDetailViewController: UIViewController {
     let base: UInt32 = 127397
     var flagString = ""
     // handle zh/cn due to newsapi.org delivering incorrect country code for China
-    for v in (country == "zh" ? "cn" : country).uppercased().unicodeScalars {
-      flagString.unicodeScalars.append(UnicodeScalar(base + v.value)!)
+    for scalarView in (country == "zh" ? "cn" : country).uppercased().unicodeScalars {
+      flagString.unicodeScalars.append(UnicodeScalar(base + scalarView.value)!)
     }
     return flagString
   }
