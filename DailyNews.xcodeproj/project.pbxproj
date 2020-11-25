@@ -174,10 +174,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7A98407255890080012F021 /* Build configuration list for PBXNativeTarget "DailyNews" */;
 			buildPhases = (
+				C7E8B6FF256E68F9004BB255 /* ShellScript */,
 				C7A983EF255890070012F021 /* Sources */,
 				C7A983F0255890070012F021 /* Frameworks */,
 				C7A983F1255890070012F021 /* Resources */,
-				C7E8B6FF256E68F9004BB255 /* ShellScript */,
 			);
 			buildRules = (
 			);
