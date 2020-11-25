@@ -26,6 +26,7 @@ A small and clean iOS app for reading live news sourced from News API. Using 100
 * Public API
 * Async download of images
 * SwiftLint
+* Dark mode support
 
 ## Features
 ✅ Show news headlines  
